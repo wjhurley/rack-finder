@@ -31,10 +31,17 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.js"></script>
+    <!-- <script src='https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.14.1/lodash.js'></script> -->
+    <!-- <script src='/path/to/angular-simple-logger/angular-simple-logger[.min].js'></script> -->
+    <script src='//maps.googleapis.com/maps/api/js?key=AIzaSyBIj6ptiU6uzej0ZfxxPxTx9sQvDeix3uo'></script>
+    <script type="text/javascript" src="js/ng-map.min.js"></script>
+    <!-- <script src='https://cdnjs.cloudflare.com/ajax/libs/angular-google-maps/2.3.3/angular-google-maps.js'></script> -->
+    <script type="text/javascript" src="js/app.js"></script>
 
 </head>
 
-<body id="page-top">
+<body id="page-top" ng-app="pedalPals" ng-controller="bikeRack as vm">
 
     <nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
         <div class="container-fluid">
@@ -46,17 +53,20 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand page-scroll" href="#page-top">Pedal Pals</a>
+                <a class="navbar-brand page-scroll" href="#page-top">Bike Rack Finder</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
                      <li>
-                        <a class="page-scroll" href="#services">Map</a>
+                        <a class="page-scroll" href="">How It Works</a>
+                    </li>
+                     <li>
+                        <a target="_blank" class="page-scroll" href="https://docs.google.com/forms/d/e/1FAIpQLScSTwNaqTwEfg8T3NkzQKkOZyTI4kq_oYF2vm4g6-LEcZUN8Q/viewform">Request Bike Rack</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#contact">About/Contact</a>
+                        <a class="page-scroll" href="#contact">Contact</a>
                     </li>
                 </ul>
             </div>
@@ -69,203 +79,54 @@
         <div class="header-content">
             <div class="header-content-inner">
 
-                <h1>Find a bike rack now!</h1>
+                <h1>Find a bike rack</h1>
                 <hr>
-                <a href="#services" class="btn btn-primary btn-xl wow tada page-scroll">Take me to the map BIOTCH</a>
+                <input id="search" ng-model="vm.address">
+                <a href="#services" ng-click="mapZoom()" class="btn btn-primary btn-xl wow tada page-scroll">Search for a Bike Rack</a>
             </div>
         </div>
     </header>
 
-    
-
     <section id="services">
         <div class="container">
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                <img src="img/map.jpg">
+            <!-- <div class="row" id="map"> -->
+                <div class="col-lg-12 text-center" >
+                    
+                <!-- <ui-gmap-google-map center='map.center' zoom='map.zoom'></ui-gmap-google-map> -->
+                <ng-map zoom="{{zoom}}" center="{{vm.address}}" id="map">
+                  <marker position="{{vm.address}}" animation="Animation.BOUNCE"></marker>
+
+                  <marker id="pin" ng-repeat="rack in racks track by $index" position="[{{rack.rack_location.coordinates[1]}}, {{rack.rack_location.coordinates[0]}}]" />
+                  <control name="overviewMap" opened="true" />
+                </ng-map>
                 
-                   <!--  <h2 class="section-heading">At Your Service</h2>
-                    <hr class="primary">
-                </div>
-            </div>
-        </div>
-
-        <section class="bg-primary" id="about">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8 col-lg-offset-2 text-center">
-                <a href="#" class="btn btn-default btn-xl">Find Racks!</a>
-                <br>
-                    <h2 class="section-heading">Use our map to find nice racks!</h2>
-                    <br>
-                    <br>
-                    <hr class="light">
-                    <p class="text-faded">Type in the address to your destination into the search bar and let Rack Finder help you locate bike racks nearby</p>
-                 -->
                 </div>
             </div>
         </div>
     </section>
-        <!-- <div class="container">
-            <div class="row">
-                <div class="col-lg-3 col-md-6 text-center">
-                    <div class="service-box">
-                        <i class="fa fa-4x fa-diamond wow bounceIn text-primary"></i>
-                        <h3>Sturdy Templates</h3>
-                        <p class="text-muted">Our templates are updated regularly so they don't break.</p>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 text-center">
-                    <div class="service-box">
-                        <i class="fa fa-4x fa-paper-plane wow bounceIn text-primary" data-wow-delay=".1s"></i>
-                        <h3>Ready to Ship</h3>
-                        <p class="text-muted">You can use this theme as is, or you can make changes!</p>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 text-center">
-                    <div class="service-box">
-                        <i class="fa fa-4x fa-newspaper-o wow bounceIn text-primary" data-wow-delay=".2s"></i>
-                        <h3>Up to Date</h3>
-                        <p class="text-muted">We update dependencies to keep things fresh.</p>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 text-center">
-                    <div class="service-box">
-                        <i class="fa fa-4x fa-heart wow bounceIn text-primary" data-wow-delay=".3s"></i>
-                        <h3>Made with Love</h3>
-                        <p class="text-muted">You have to make your websites with love these days!</p>
-                    </div> -->
-                <!-- </div> -->
-            <!-- </div> -->
-        <!-- </div> -->
-    </section>
 
-    <!-- <section class="no-padding" id="portfolio">
-        <div class="container-fluid">
-            <div class="row no-gutter">
-                <div class="col-lg-4 col-sm-6">
-                    <a href="#" class="portfolio-box">
-                        <img src="img/portfolio/1.jpg" class="img-responsive" alt="">
-                        <div class="portfolio-box-caption">
-                            <div class="portfolio-box-caption-content">
-                                <div class="project-category text-faded">
-                                    Category
-                                </div>
-                                <div class="project-name">
-                                    Project Name
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-lg-4 col-sm-6">
-                    <a href="#" class="portfolio-box">
-                        <img src="img/portfolio/2.jpg" class="img-responsive" alt="">
-                        <div class="portfolio-box-caption">
-                            <div class="portfolio-box-caption-content">
-                                <div class="project-category text-faded">
-                                    Category
-                                </div>
-                                <div class="project-name">
-                                    Project Name
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-lg-4 col-sm-6">
-                    <a href="#" class="portfolio-box">
-                        <img src="img/portfolio/3.jpg" class="img-responsive" alt="">
-                        <div class="portfolio-box-caption">
-                            <div class="portfolio-box-caption-content">
-                                <div class="project-category text-faded">
-                                    Category
-                                </div>
-                                <div class="project-name">
-                                    Project Name
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-lg-4 col-sm-6">
-                    <a href="#" class="portfolio-box">
-                        <img src="img/portfolio/4.jpg" class="img-responsive" alt="">
-                        <div class="portfolio-box-caption">
-                            <div class="portfolio-box-caption-content">
-                                <div class="project-category text-faded">
-                                    Category
-                                </div>
-                                <div class="project-name">
-                                    Project Name
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-lg-4 col-sm-6">
-                    <a href="#" class="portfolio-box">
-                        <img src="img/portfolio/5.jpg" class="img-responsive" alt="">
-                        <div class="portfolio-box-caption">
-                            <div class="portfolio-box-caption-content">
-                                <div class="project-category text-faded">
-                                    Category
-                                </div>
-                                <div class="project-name">
-                                    Project Name
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-lg-4 col-sm-6">
-                    <a href="#" class="portfolio-box">
-                        <img src="img/portfolio/6.jpg" class="img-responsive" alt="">
-                        <div class="portfolio-box-caption">
-                            <div class="portfolio-box-caption-content">
-                                <div class="project-category text-faded">
-                                    Category
-                                </div>
-                                <div class="project-name">
-                                    Project Name
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </div> -->
-    </section>
 
-    <aside class="bg-dark">
+    <aside class="bg-dark" id="contact">
         <div class="container text-center">
             <div class="call-to-action">
                 <h2>About Us</h2>
-                <h4>Rack Finder is a part of Pedaler Pals vision to promote bicycling culture in Seattle. Our goal is to provide cyclists with a solution to quickly and easily locate bike racks within the city of Seattle.</h4>
-               
- <a class="fa fa-bicycle fa-4x wow tada"></a>
+                <h4>Bike  Rack Finder is a part of Pedal Pals vision to promote bicycling culture in Seattle. Our goal is to provide cyclists with a solution to quickly and easily locate bike racks within the city of Seattle.</h4>
+
             </div>
+        </div>
+        <div class="col-lg-4 text-center">
+            <i class="fa fa-phone fa-3x wow bounceIn"></i>
+            <p>1800-lok-bike</p>
+        </div>
+         <div class="col-lg-4 text-center">
+            <a class="fa fa-bicycle fa-4x wow tada"></a>
+        </div>
+        <div class="text-center">
+            <i class="fa fa-envelope-o fa-3x wow bounceIn" data-wow-delay=".1s"></i>
+            <p><a href="mailto:your-email@your-domain.com">info@bikerackfinder.com</a></p>
         </div>
     </aside>
 
-    <section id="contact">
-        <div class="container">
-            <div class="row">
-                    
-                </div>
-                <div class="col-lg-4 text-center">
-                    <i class="fa fa-phone fa-3x wow bounceIn"></i>
-                    <p>1800-lok-bike</p>
-                    </div>
-            <div class="fa fa-facebook fa-4x" aria-hidden="true">
-              </div>
-                <div class="col-lg-4 text-center">
-                    <i class="fa fa-envelope-o fa-3x wow bounceIn" data-wow-delay=".1s"></i>
-                    <p><a href="mailto:your-email@your-domain.com">info@pedalpals.com</a></p>
-                </div>
-            </div>
-        </div>
-    </section>
 
     <!-- jQuery -->
     <script src="js/jquery.js"></script>
