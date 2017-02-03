@@ -2,9 +2,9 @@ var pedalApp = angular.module('pedalPals', ['ngMap']);
 
 
 pedalApp.controller('bikeRack', ['$scope', '$http', function($scope, $http) {
-  console.log('App loaded successfully')
+  console.log('App loaded successfully');
   this.address = "Seattle";
-// $scope.map = { center: { latitude: 47.6081, longitude: -122.338 }, zoom: 15 };
+  // $scope.map = { center: { latitude: 47.6081, longitude: -122.338 }, zoom: 15 };
   $scope.zoom = 11;
   function getRacks() {
     var counter = 0;
@@ -17,14 +17,14 @@ pedalApp.controller('bikeRack', ['$scope', '$http', function($scope, $http) {
         console.log(response.data);
       });
       counter += 1000;
-    } while(counter < 3000)
+    } while(counter < 3000);
   }
   getRacks();
   console.log('Bike rack query loaded successfully');
 
 
-$scope.mapZoom = function zoomMap() {
-  $scope.zoom = 17;
-};
+  $scope.mapZoom = function zoomMap() {
+    $scope.zoom = 17;
+  };
 
 }]);
