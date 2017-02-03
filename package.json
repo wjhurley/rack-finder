@@ -2,20 +2,20 @@
   "name": "racks",
   "version": "1.0.0",
   "description": "hackathon",
-  "main": "index.js",
+  "main": "index.html",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/evans760/Pedal-Pals.git"
+    "url": "git+https://github.com/evans760/rack-finder.git"
   },
-  "author": "",
+  "author": "Thomas Evans, William Hurley",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/evans760/Pedal-Pals/issues"
+    "url": "https://github.com/evans760/rack-finder/issues"
   },
-  "homepage": "https://github.com/evans760/Pedal-Pals#readme",
+  "homepage": "https://github.com/evans760/rack-finder#readme",
   "dependencies": {
     "angular-google-maps": "^2.3.3",
     "browserify": "^13.1.0"
