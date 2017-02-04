@@ -1,7 +1,7 @@
 {
-  "name": "racks",
+  "name": "rack-finder",
   "version": "1.0.0",
-  "description": "hackathon",
+  "description": "app to find public bicycle racks in Seattle",
   "main": "index.html",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -17,14 +17,14 @@
   },
   "homepage": "https://github.com/evans760/rack-finder#readme",
   "dependencies": {
-    "angular-google-maps": "^2.3.3",
     "angular": "^1.5.8",
+    "angular-google-maps": "^2.3.3",
     "angular-simple-logger": "^0.1.7",
     "coffee-script": "^1.10.0",
     "google-maps-utility-library-v3-infobox": "^1.1.14",
     "google-maps-utility-library-v3-keydragzoom": "^2.0.9",
-    "js-rich-marker": "^1.0.0",
     "google-maps-utility-library-v3-markerwithlabel": "^1.1.10",
+    "js-rich-marker": "^1.0.0",
     "markerclustererplus": "^2.1.4"
   },
   "devDependencies": {}
