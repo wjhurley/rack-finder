@@ -1,15 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-
+  <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-
-    <title>Racks</title>
+    <title>Rack-Finder</title>
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
@@ -30,103 +27,101 @@
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
     <script src="js/angular.js"></script>
-    <!-- <script src='https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.14.1/lodash.js'></script> -->
     <!-- <script src='/path/to/angular-simple-logger/angular-simple-logger[.min].js'></script> -->
     <script src='https://maps.googleapis.com/maps/api/js?key=AIzaSyBIj6ptiU6uzej0ZfxxPxTx9sQvDeix3uo'></script>
     <script type="text/javascript" src="js/ng-map.min.js"></script>
     <!-- <script src='https://cdnjs.cloudflare.com/ajax/libs/angular-google-maps/2.3.3/angular-google-maps.js'></script> -->
     <script type="text/javascript" src="js/app.js"></script>
 
-</head>
+  </head>
 
-<body id="page-top" ng-app="pedalPals" ng-controller="bikeRack as vm">
+  <body id="page-top" ng-app="pedalPals" ng-controller="bikeRack as vm">
 
     <nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
-        <div class="container-fluid">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand page-scroll" href="#page-top">Bike Rack Finder</a>
-            </div>
-
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav navbar-right">
-                     <li>
-                        <a class="page-scroll" href="">How It Works</a>
-                    </li>
-                     <li>
-                        <a target="_blank" class="page-scroll" href="https://docs.google.com/forms/d/e/1FAIpQLScSTwNaqTwEfg8T3NkzQKkOZyTI4kq_oYF2vm4g6-LEcZUN8Q/viewform">Request Bike Rack</a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="#contact">Contact</a>
-                    </li>
-                </ul>
-            </div>
-            <!-- /.navbar-collapse -->
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand page-scroll" href="#page-top">Bike Rack Finder</a>
         </div>
-        <!-- /.container-fluid -->
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav navbar-right">
+            <li>
+              <a class="page-scroll" href="">How It Works</a>
+            </li>
+            <li>
+              <a target="_blank" class="page-scroll" href="https://docs.google.com/forms/d/e/1FAIpQLScSTwNaqTwEfg8T3NkzQKkOZyTI4kq_oYF2vm4g6-LEcZUN8Q/viewform">Request Bike Rack</a>
+            </li>
+            <li>
+              <a class="page-scroll" href="#contact">Contact</a>
+            </li>
+          </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+      </div>
+      <!-- /.container-fluid -->
     </nav>
 
     <header>
-        <div class="header-content">
-            <div class="header-content-inner">
-
-                <h1>Find a bike rack</h1>
-                <hr>
-                <input id="search" ng-model="vm.address">
-                <a href="#services" ng-click="mapZoom()" class="btn btn-primary btn-xl wow tada page-scroll">Search for a Bike Rack</a>
-            </div>
+      <div class="header-content">
+        <div class="header-content-inner">
+          <h1>Find a bike rack</h1>
+          <hr>
+          <input id="search" ng-model="address.default" placeholder="Seattle">
+          <a href="#services" ng-click="mapZoom()" class="btn btn-primary btn-xl wow tada page-scroll">Search for a Bike Rack</a>
         </div>
+      </div>
     </header>
 
     <section id="services">
-        <div class="container">
-            <!-- <div class="row" id="map"> -->
-                <div class="col-lg-12 text-center" >
-                    
-                <!-- <ui-gmap-google-map center='map.center' zoom='map.zoom'></ui-gmap-google-map> -->
-                <ng-map zoom="{{zoom}}" center="{{vm.address}}" id="map">
-                  <marker position="{{vm.address}}" animation="Animation.BOUNCE"></marker>
+      <div class="container">
+        <!-- <div class="row" id="map"> -->
+        <div class="col-lg-12 text-center" >
 
-                  <marker id="pin" ng-repeat="rack in racks track by $index" position="[{{rack.rack_location.coordinates[1]}}, {{rack.rack_location.coordinates[0]}}]" />
-                  <control name="overviewMap" opened="true" />
-                </ng-map>
-                
-                </div>
-            </div>
+          <!-- <ui-gmap-google-map center='map.center' zoom='map.zoom'></ui-gmap-google-map> -->
+          <ng-map zoom="{{zoom}}" center="[{{address.latitude}},{{address.longitude}}]" id="map">
+            <marker position="[{{address.latitude}},{{address.longitude}}]" animation="Animation.BOUNCE"></marker>
+
+            <marker id="pin" ng-repeat="rack in racks track by $index" position="[{{rack.rack_location.coordinates[1]}}, {{rack.rack_location.coordinates[0]}}]" />
+            <control name="overviewMap" opened="true" />
+          </ng-map>
+
         </div>
+      </div>
     </section>
 
 
     <aside class="bg-dark" id="contact">
-        <div class="container text-center">
-            <div class="call-to-action">
-                <h2>About Us</h2>
-                <h4>Bike  Rack Finder is a part of Pedal Pals vision to promote bicycling culture in Seattle. Our goal is to provide cyclists with a solution to quickly and easily locate bike racks within the city of Seattle.</h4>
-
-            </div>
+      <div class="container text-center">
+        <div class="call-to-action">
+          <h2>About Us</h2>
+          <h4>Bike  Rack Finder is a part of Pedal Pals vision to promote bicycling culture in Seattle. Our goal is to provide cyclists with a solution to quickly and easily locate bike racks within the city of Seattle.</h4>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-4 text-center">
+          <i class="fa fa-phone fa-3x wow bounceIn"></i>
+          <p>1-800-lok-bike</p>
         </div>
         <div class="col-lg-4 text-center">
-            <i class="fa fa-phone fa-3x wow bounceIn"></i>
-            <p>1800-lok-bike</p>
+          <a class="fa fa-bicycle fa-4x wow tada"></a>
         </div>
-         <div class="col-lg-4 text-center">
-            <a class="fa fa-bicycle fa-4x wow tada"></a>
+        <div class="col-lg-4 text-center">
+          <i class="fa fa-envelope-o fa-3x wow bounceIn" data-wow-delay=".1s"></i>
+          <p><a href="mailto:your-email@your-domain.com">info@bikerackfinder.com</a></p>
         </div>
-        <div class="text-center">
-            <i class="fa fa-envelope-o fa-3x wow bounceIn" data-wow-delay=".1s"></i>
-            <p><a href="mailto:your-email@your-domain.com">info@bikerackfinder.com</a></p>
-        </div>
+      </div>
     </aside>
 
 
@@ -144,6 +139,6 @@
     <!-- Custom Theme JavaScript -->
     <script src="js/creative.js"></script>
 
-</body>
+  </body>
 
 </html>
