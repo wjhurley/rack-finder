@@ -3,8 +3,6 @@ var pedalApp = angular.module('pedalPals', ['ngMap']);
 pedalApp.controller('bikeRack', ['$scope', '$http', function($scope, $http) {
   console.log('App loaded successfully');
   // $scope.address = { latitude: 47.5265, longitude: -122.315, default: '' };
-  // $scope.map = { center: { latitude: 47.5265, longitude: -122.315 }, zoom: 15 };
-  // $scope.zoom = 11;
   if(navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(function(position) {
       $scope.$apply(function() {
@@ -13,12 +11,14 @@ pedalApp.controller('bikeRack', ['$scope', '$http', function($scope, $http) {
           longitude: position.coords.longitude
         };
       });
+      $scope.zoom = 13;
     });
   } else {
     $scope.$apply(function() {
       $scope.address = {
         default: 'Seattle'
       };
+      $scope.zoom = 13;
     });
   }
   function getRacks() {
@@ -39,7 +39,11 @@ pedalApp.controller('bikeRack', ['$scope', '$http', function($scope, $http) {
   console.log($scope);
 
   $scope.mapZoom = function zoomMap() {
-    $scope.zoom = 17;
+    $scope.$apply(function() {
+
+    });
+    $scope.address.default = 'Testing';
+    $scope.zoom = 13;
   };
 
 }]);
